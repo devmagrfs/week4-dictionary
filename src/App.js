@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import styled from "styled-components";
+import { Route, Routes } from 'react-router-dom';
+import Card from './Card';
+import AddWord from './AddWord';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<>
+			<TitleStyled>나만의 단어장</TitleStyled>
+
+
+			<ContainerStyled>
+				<Routes>
+					<Route path="/" element={<Card />} />
+					<Route path="/add" element={<AddWord />} />
+				</Routes>
+			</ContainerStyled>
+		</>
+	);
 }
+
+const TitleStyled = styled.h1`
+	text-align: center;
+`;
+
+const ContainerStyled = styled.div`
+	display: flex;
+	width: 100%;
+	margin: 20px;
+	padding: 20px;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	box-sizing: border-box;
+	background-color: #077029;
+`;
+
 
 export default App;
