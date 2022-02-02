@@ -1,12 +1,15 @@
 import './App.css';
 import styled from "styled-components";
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Card from './Card';
 import AddWord from './AddWord';
 import Modify from './Modify';
-
+import Spinner from './Spinner';
 
 function App() {
+	const is_loaded = useSelector(state => state.word.is_loaded);
+
 	return (
 		<>
 			<TitleStyled>나만의 단어장</TitleStyled>
@@ -17,6 +20,7 @@ function App() {
 					<Route path="/modify/:index" element={<Modify />} />
 				</Routes>
 			</ContainerStyled>
+			{!is_loaded && <Spinner />}
 		</>
 	);
 }

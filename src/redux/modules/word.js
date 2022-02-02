@@ -2,6 +2,7 @@ import { doc, collection, getDocs, addDoc, updateDoc } from "firebase/firestore"
 import { db } from '../../firebase';
 
 const initialState = {
+    is_loaded: false,
     list: []
 }
 
@@ -83,7 +84,7 @@ export function updateWordFB(word, id) {
 export default function reducer(state = initialState, action = {}) {
     switch (action.type) {
         case "words/LOAD":
-            return { list: action.word_list };
+            return { list: action.word_list, is_loaded: true };
 
         case "words/CREATE": {
             const new_word_list = [...state.list, action.word_data];
@@ -97,7 +98,7 @@ export default function reducer(state = initialState, action = {}) {
                     : word
             });
             console.log(new_word_list)
-            return { list: new_word_list };
+            return { ...state, list: new_word_list };
         }
 
         case "words/UPDATE": {
