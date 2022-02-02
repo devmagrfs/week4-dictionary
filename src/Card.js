@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadWordFB, completedWordFB } from './redux/modules/word';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
+import SaveIcon from '@mui/icons-material/Save';
 
 
 
@@ -13,6 +16,12 @@ const Card = () => {
     React.useEffect(() => {
         dispatch(loadWordFB());
     }, [dispatch]);
+
+    const completedWord = async (dic) => {
+        await dispatch(completedWordFB(dic))
+
+        // window.location.reload();
+    }
 
     return (
         <>
@@ -34,14 +43,14 @@ const Card = () => {
                                     <span>예문</span>
                                     <p className="explain">{dic.explain}</p>
 
-                                    <button onClick={() => {
-                                        dispatch(completedWordFB(dic))
-                                    }}>공부함</button>
+                                    <Button variant="contained" color="success" onClick={() => {
+                                        completedWord(dic)
+                                    }}>공부함</Button>
 
-                                    <Link to={`/modify/${idx}`}>
-                                        <ModifyBtnStyled>
+                                    <Link to={`/modify/${idx}`} style={{ textDecoration: 'none' }}>
+                                        <Button variant="contained" endIcon={<SendIcon />}>
                                             수정하기
-                                        </ModifyBtnStyled>
+                                        </Button>
                                     </Link>
 
                                 </CardStyled>
@@ -54,20 +63,26 @@ const Card = () => {
                                     <span>예문</span>
                                     <p className="explain">{dic.explain}</p>
 
-                                    <button onClick={() => {
-                                        dispatch(completedWordFB(dic))
-                                    }}>생각해보니 공부 안함</button>
+                                    <Button variant="contained" onClick={() => {
+                                        completedWord(dic)
+                                    }}>생각해보니 공부 안함</Button>
 
-                                    <Link to={`/modify/${idx}`}>
-                                        <ModifyBtnStyled>
+                                    <Link to={`/modify/${idx}`} style={{ textDecoration: "none" }}>
+                                        <Button variant="contained" endIcon={<SendIcon />} >
                                             수정하기
-                                        </ModifyBtnStyled>
+                                        </Button>
                                     </Link>
                                 </CompletedCardStyled>
                         )
                     })
             }
-            <Link to="/add" style={{ textDecoration: "none" }}> <AddBtnStyled>단어 추가하기</AddBtnStyled> </Link>
+            <Link to="/add" style={{ textDecoration: "none" }}>
+                <AddBtnStyled>
+                    <Button color="secondary" endIcon={<SaveIcon />} variant="contained">
+                        단어 추가하기
+                    </Button>
+                </AddBtnStyled>
+            </Link>
         </>
     )
 }
@@ -124,19 +139,10 @@ const CompletedCardStyled = styled.div`
     }
 `;
 
-const ModifyBtnStyled = styled.button`
-    color: red;
-`;
-
 const AddBtnStyled = styled.div`
     position: absolute;
     top: 40px;
     right: 55px;
-    font-size: 24px;
-    border: 2px solid gray;
-    background-color: hotpink;
-    padding: 2px;
-    border-radius: 3px;
 `;
 
 export default Card;
