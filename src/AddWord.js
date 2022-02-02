@@ -18,10 +18,12 @@ const AddWord = () => {
             {
                 word: inputWord.current.value,
                 content: inputContent.current.value,
-                explain: inputExplain.current.value
+                explain: inputExplain.current.value,
+                completed: false,
             }
         ));
 
+        window.alert("단어가 추가되었습니다.");
         navigate("/");
     }
 

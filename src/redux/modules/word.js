@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import { doc, collection, getDocs, addDoc, updateDoc } from "firebase/firestore";
 import { db } from '../../firebase';
 
 const initialState = {
@@ -8,6 +8,8 @@ const initialState = {
 // Actions
 const LOAD = 'words/LOAD';
 const CREATE = 'words/CREATE';
+const COMPLETED = 'words/COMPLETED';
+const UPDATE = 'words/UPDATE';
 
 
 // Action Creators
@@ -15,8 +17,16 @@ export function loadWord(word_list) {
     return { type: LOAD, word_list };
 }
 
-export function createWord(newWord) {
-    return { type: CREATE, newWord };
+export function createWord(word_data) {
+    return { type: CREATE, word_data };
+}
+
+export function completedWord(word_index) {
+    return { type: COMPLETED, word_index };
+}
+
+export function updateWord(word) {
+    return { type: UPDATE, word };
 }
 
 
@@ -40,6 +50,34 @@ export function createWordFB(word) {
     }
 }
 
+export function completedWordFB(word) {
+    return async function (dispatch, getState) {
+        const docRef = doc(db, "words", word.id);
+        await updateDoc(docRef, { completed: !word.completed });
+
+        const word_list = getState().word.list;
+        const word_index = word_list.findIndex((w) => {
+            return w.id === word.id;
+        })
+
+        dispatch(completedWord(word_index));
+    }
+}
+
+export function updateWordFB(word, id) {
+    return async function (dispatch) {
+        const docRef = doc(db, "words", word.id);
+        await updateDoc(docRef, {
+            word: word.word,
+            content: word.content,
+            explain: word.explain,
+        });
+        const new_word = { ...word, id };
+
+        dispatch(updateWord(new_word));
+    }
+}
+
 
 // Reducer
 export default function reducer(state = initialState, action = {}) {
@@ -48,9 +86,29 @@ export default function reducer(state = initialState, action = {}) {
             return { list: action.word_list };
 
         case "words/CREATE": {
-            const new_word_list = [...state.list, action.newWord];
+            const new_word_list = [...state.list, action.word_data];
+            return { ...state, list: new_word_list };
+        }
+
+        case "words/COMPLETED": {
+            const new_word_list = state.list.map((word) => {
+                return word.id === action.word_index
+                    ? { ...word, completed: !word.completed }
+                    : word
+            });
+            console.log(new_word_list)
             return { list: new_word_list };
         }
+
+        case "words/UPDATE": {
+            const new_word_list = state.list.map((word) => {
+                return word.id === action.word.id
+                    ? { ...word, ...action.word }
+                    : word
+            })
+            return { ...state, list: new_word_list };
+        }
+
         default: return state;
     }
 }
