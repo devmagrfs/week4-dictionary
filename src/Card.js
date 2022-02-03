@@ -19,8 +19,6 @@ const Card = () => {
 
     const completedWord = async (dic) => {
         await dispatch(completedWordFB(dic))
-
-        // window.location.reload();
     }
 
     return (

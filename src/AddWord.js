@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { createWordFB, loadWordFB } from './redux/modules/word';
+import { createWordFB } from './redux/modules/word';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 
