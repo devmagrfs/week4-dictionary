@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# 사용 기술 및 라이브러리
+- React
+  - creat-react-app
+  - react router dom
+- Redux
+  - redux-persist
+  - redux thunk
+- styled-components
+- Material UI
+- firebase
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
 
-In the project directory, you can run:
+# 프로젝트
+### **메인페이지**
+  - 나만의 단어장 제목
+  - 카드들을 불러와서 나열하기
+  - 단어 추가하기 버튼. 클릭 시 추가하기 페이지로 이동
+  
+![메인페이지](https://images.velog.io/images/devmag/post/85bf2047-931c-46ae-a7b0-5950d4bf0340/mainpage.png)
+  
+  
+### **카드**
+  - 단어 / 설명 / 예문을 보여줌
+  - completed 버튼 클릭 시 공부를 한 카드와 공부를 안 한 카드에 따라 구분 바탕색으로 구분감 줌
+  - modify 버튼을 클릭 시 해당 카드 수정 페이지로 이동
 
-### `yarn start`
+![카드](https://images.velog.io/images/devmag/post/b4bceb37-b7be-4a88-b4ae-1a4024e52b82/card.png)
+  
+  
+### **추가하기 페이지**
+  - 단어, 설명, 예문을 입력할 수 있는 페이지
+  - 추가하기 버튼 클릭 시 추가했다는 alert 창 이후 메인페이지로 이동
+  
+![추가하기](https://images.velog.io/images/devmag/post/e72dd2bb-b290-495b-bf80-5b64076ca7b9/addBtn.gif)
+  
+  
+  
+### **해당 카드 수정하기 페이지**
+  - 해당 카드의 원래 적혀 있던값이 그대로 input 칸에 적혀 있으면 수정해서 적을 수 있음
+  - 수정하기 버튼 클릭 시 alert창으로 알려주며 메인페이지로 이동
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![수정하기](https://images.velog.io/images/devmag/post/f57a4434-9993-47b2-bc18-06f6ed3a16c2/modiBtn.gif)
