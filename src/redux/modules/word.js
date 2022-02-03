@@ -62,6 +62,7 @@ export function completedWordFB(word) {
         })
 
         dispatch(completedWord(word_index));
+        dispatch(loadWordFB());
     }
 }
 
@@ -88,7 +89,9 @@ export default function reducer(state = initialState, action = {}) {
 
         case "words/CREATE": {
             const new_word_list = [...state.list, action.word_data];
-            return { ...state, list: new_word_list };
+            console.log({ list: new_word_list, ...state })
+            console.log({ ...state, list: new_word_list })
+            return { list: new_word_list, ...state };
         }
 
         case "words/COMPLETED": {
